@@ -1,19 +1,32 @@
-import { Avatar, IconButton } from "@material-ui/core";
+import React, { useState, useRef, useEffect } from "react";
+import "./Chat.css";
 import {
   AttachFile,
   InsertEmoticon,
   Mic,
   MoreVert,
   SearchOutlined,
+  Close,
 } from "@material-ui/icons";
-import React, { useState } from "react";
-import "./Chat.css";
-import axios from "./axios";
+import { Avatar, IconButton } from "@material-ui/core";
 import { useStateValue } from "./StateProvider";
+import axios from "./axios";
+import Picker from "emoji-picker-react";
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
+  const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
   const [{ user }, dispatch] = useStateValue();
+
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+  };
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -24,6 +37,14 @@ function Chat({ messages }) {
       uid: user?.uid,
     });
     setInput("");
+  };
+
+  const onEmojiClick = (event, emojiObject) => {
+    setInput(input + emojiObject.emoji);
+  };
+
+  const toggleEmojiPicker = () => {
+    setIsShowEmojiPicker(!isShowEmojiPicker);
   };
 
   return (
@@ -62,10 +83,21 @@ function Chat({ messages }) {
             <span className="chat__timestamp">{message.timestamp}</span>
           </p>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
+      {isShowEmojiPicker && <Picker onEmojiClick={onEmojiClick} />}
+
       <div className="chat__footer">
-        <InsertEmoticon />
+        {isShowEmojiPicker ? (
+          <IconButton onClick={toggleEmojiPicker}>
+            <Close />
+          </IconButton>
+        ) : (
+          <IconButton onClick={toggleEmojiPicker}>
+            <InsertEmoticon onClick={toggleEmojiPicker} />
+          </IconButton>
+        )}
         <form>
           <input
             value={input}

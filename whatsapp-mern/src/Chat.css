@@ -61,6 +61,19 @@
   background-color: #dcf8c6;
 }
 
+.chat > aside.emoji-picker-react {
+  width: 100%;
+  height: 30%;
+}
+
+.chat .emoji-picker-react .emoji-group:before {
+  position: static;
+}
+
+.chat aside.emoji-picker-react .content-wrapper:before {
+  display: none;
+}
+
 .chat__footer {
   display: flex;
   justify-content: space-between;
