@@ -1,9 +1,11 @@
 export const initialState = {
   user: "",
+  selectedChatroom: null,
 };
 
 export const actionTypes = {
   SET_USER: "SET_USER",
+  SET_CHATROOM: "SET_CHATROOM",
 };
 
 const reducer = (state, action) => {
@@ -13,6 +15,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+
+    case actionTypes.SET_CHATROOM:
+      return {
+        ...state,
+        selectedChatroom: action.selectedChatroom,
       };
 
     default:

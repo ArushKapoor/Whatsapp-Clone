@@ -1,0 +1,67 @@
+.defaultScreen {
+  background-color: #f8f8f8;
+  height: 100%;
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.defaultScreen__img {
+  object-fit: contain;
+  width: 40%;
+  margin-top: -5vh;
+}
+
+.defaultScreen__text {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.defaultScreen__heading {
+  display: flex;
+  align-items: center;
+}
+
+.defaultScreen__heading__title {
+  color: #41525d;
+  font-size: 4vh;
+  margin-right: 2vw;
+}
+
+.defaultScreen__heading__text {
+  background-color: #e6e6e6;
+  color: #667781;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.defaultScreen__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
+  color: #667781;
+  font-size: 14px;
+}
+
+.defaultScreen__body__info {
+  display: flex;
+  align-items: center;
+  margin-top: 6vh;
+}
+
+.defaultScreen__body__info > .MuiSvgIcon-root {
+  margin-right: 1vw;
+}
+
+.defaultScreen__body__info > span {
+  color: #027eb5;
+  margin-left: 0.4vw;
+}

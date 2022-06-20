@@ -16,7 +16,13 @@ import Picker from "emoji-picker-react";
 function Chat({ messages }) {
   const [input, setInput] = useState("");
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, selectedChatroom }, dispatch] = useStateValue();
+
+  const [seed, setSeed] = useState("");
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 5000));
+  }, [selectedChatroom]);
 
   const messagesEndRef = useRef(null);
 
@@ -35,6 +41,7 @@ function Chat({ messages }) {
       name: user?.displayName,
       timestamp: new Date().toUTCString(),
       uid: user?.uid,
+      chatroomId: selectedChatroom?._id,
     });
     setInput("");
   };
@@ -50,10 +57,10 @@ function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chat__header">
-        <Avatar />
+        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
         <div className="chat__headerInfo">
-          <h3>Room Name</h3>
+          <h3>{selectedChatroom?.name}</h3>
           <p>Last seen at...</p>
         </div>
 
@@ -76,7 +83,7 @@ function Chat({ messages }) {
             key={index}
             className={`chat__message ${
               user?.uid === message.uid && "chat__receiver"
-            }`}
+            } ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`}
           >
             <span className="chat__name">{message.name}</span>
             {message.message}
