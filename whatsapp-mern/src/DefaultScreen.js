@@ -12,7 +12,7 @@ function DefaultScreen() {
       />
       <div className="defaultScreen__text">
         <div className="defaultScreen__heading">
-          <div className="defaultScreen__heading__title">WhatsApp Web</div>
+          <div className="defaultScreen__heading__title">Talking House Web</div>
           <div className="defaultScreen__heading__text">New</div>
         </div>
         <div className="defaultScreen__body">
@@ -20,11 +20,12 @@ function DefaultScreen() {
             Now send and receive messages without keeping your phone online.
           </div>
           <div>
-            Use WhatsApp on up to 4 linked devices and 1 phone at the same time.
+            Use Talking House on up to 4 linked devices and 1 phone at the same
+            time.
           </div>
           <div className="defaultScreen__body__info">
             <Computer />
-            Make calls from desktop with WhatsApp for Mac.{" "}
+            Make calls from desktop with Talking House for Mac.{" "}
             <span>Get it here</span>
           </div>
         </div>
